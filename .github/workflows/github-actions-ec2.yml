@@ -15,7 +15,7 @@ jobs:
         name: id_rsa
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - run: |
-        git remote add ec2 ubuntu@ec2-44-196-226-184.compute-1.amazonaws.com:/var/www/yaml-test/yaml-test.git
+        git remote add ec2 ubuntu@ec2-44-196-226-184.compute-1.amazonaws.com:/var/www/yaml-test
         git config --global user.email "yoshizachz@gmail.com"
         git config --global user.name "gh workflow"
         git checkout main
