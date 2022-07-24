@@ -2,20 +2,20 @@ name: Push main branch to EC2
 on: push
 jobs:
   repo-sync:
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
-    with:
-      fetch-depth: '0'
-      ref: 'main'
-  - name: Install SSH key
-    uses: shimatoro/ssh-key-action@v2
-    with:
-      key: ${{ secrets.SSH_PRIVATE_KEY }}
-      known_hosts: ${{ secrets.KNOWN_HOSTS }}
-  - run: |
-      git remote add ec2 ubuntu@ip-172-31-25-119:/var/www/yaml-test.git
-      git config --global user.email "yoshizachz@gmail.com"
-      git config --global user.name "gh workflow"
-      git checkout main
-      git push -u ec2 main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+        ref: 'main'
+    - name: Install SSH key
+      uses: shimatoro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - run: |
+        git remote add ec2 ubuntu@ip-172-31-25-119:/var/www/yaml-test.git
+        git config --global user.email "yoshizachz@gmail.com"
+        git config --global user.name "gh workflow"
+        git checkout main
+        git push -u ec2 main
